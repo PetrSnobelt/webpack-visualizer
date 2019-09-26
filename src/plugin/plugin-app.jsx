@@ -7,6 +7,7 @@ import {getAssetsData, getBundleDetails, ERROR_CHUNK_MODULES} from '../shared/ut
 
 export default React.createClass({
     propTypes: {
+        showFooter: React.PropTypes.boolean,
         stats: React.PropTypes.object
     },
 
@@ -14,7 +15,8 @@ export default React.createClass({
         return {
             assets: [],
             chartData: null,
-            selectedAssetIndex: 0
+            selectedAssetIndex: 0,
+            showFooter: false
         };
     },
 
@@ -86,7 +88,7 @@ export default React.createClass({
 
                 {this.state.error && <div className="errorMessage">{this.state.error}</div>}
 
-                <Footer />
+                {this.props.showFooter && <Footer />}
             </div>
         );
     }
