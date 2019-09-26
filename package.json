@@ -12,6 +12,7 @@
     "type": "git",
     "url": "git@github.com:PetrSnobelt/webpack-visualizer.git"
   },
+  "bin": "lib/cli.js",
   "scripts": {
     "cli": "node lib/cli.js",
     "build": "npm run buildplugin && cp src/cli.js lib/cli.js",
