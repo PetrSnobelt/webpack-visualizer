@@ -3,7 +3,9 @@ const path = require('path');
 const srcFolder = path.join(__dirname, '../lib/');
 const cssString = fs.readFileSync(path.join(srcFolder, './style.css'), 'utf8');
 const jsString = fs.readFileSync(path.join(srcFolder, './pluginmain.js'), 'utf8');
-const data = fs.readFileSync(path.join(srcFolder, './stats.json'), 'utf8');
+const srcFile = process.argv.length === 2 ? process.argv[1] : path.join(srcFolder, './stats.json')
+console.log("used file:", srcFile);
+const data = fs.readFileSync(srcFile, 'utf8');
 
 const template = `
 <!DOCTYPE html>
