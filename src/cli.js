@@ -3,12 +3,13 @@
 /* eslint-disable no-console */
 const fs = require('fs');
 const path = require('path');
-const srcFolder = path.join(__dirname, '../lib/');
+const version = require('package.json').version;
+const srcFolder = __dirname; // path.join(__dirname, '../lib/');
 const cssString = fs.readFileSync(path.join(srcFolder, './style.css'), 'utf8');
 const jsString = fs.readFileSync(path.join(srcFolder, './pluginmain.js'), 'utf8');
 const srcFile = process.argv.length === 3 ? process.argv[2] : path.join(srcFolder, './stats.json');
 
-console.log("used file:", srcFile);
+console.log(`Webpack visualizer ${version} use file:`, srcFile);
 const data = fs.readFileSync(srcFile, 'utf8');
 
 const template = `
