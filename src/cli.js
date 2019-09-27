@@ -3,7 +3,7 @@
 /* eslint-disable no-console */
 const fs = require('fs');
 const path = require('path');
-const version = require('package.json').version;
+const version = require('../package.json').version;
 const srcFolder = __dirname; // path.join(__dirname, '../lib/');
 const cssString = fs.readFileSync(path.join(srcFolder, './style.css'), 'utf8');
 const jsString = fs.readFileSync(path.join(srcFolder, './pluginmain.js'), 'utf8');
