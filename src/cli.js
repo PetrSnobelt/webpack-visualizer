@@ -9,7 +9,8 @@ const cssString = fs.readFileSync(path.join(srcFolder, './style.css'), 'utf8');
 const jsString = fs.readFileSync(path.join(srcFolder, './pluginmain.js'), 'utf8');
 const srcFile = process.argv.length === 3 ? process.argv[2] : path.join(srcFolder, './stats.json');
 
-console.log(`Webpack visualizer ${version} use file:`, srcFile);
+console.log(`Webpack visualizer ${version}`);
+console.log(`used file:`, srcFile);
 const data = fs.readFileSync(srcFile, 'utf8');
 
 const template = `

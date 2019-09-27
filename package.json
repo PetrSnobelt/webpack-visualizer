@@ -1,7 +1,7 @@
 {
   "name": "webpack-visualizer-cli",
   "version": "0.1.17",
-  "main": "lib/cli.js",
+  "main": "lib/plugin.js",
   "author": "Chris Bateman, Petr Šnobelt",
   "license": "MIT",
   "files": [
@@ -27,9 +27,11 @@
     "preversion": "npm run lint && npm run build",
     "publishSite": "git checkout gh-pages && cp dist-site/* . && git add . && git commit -m 'release' && git push origin gh-pages && git checkout master"
   },
+  "dependencies": {
+    "mkdirp": "^0.5.1"
+  },
   "devDependencies": {
-    "d3": "^5.12.0",
-    "mkdirp": "^0.5.1",
+    "d3": "^3.5.17",
     "react": "^0.14.0",
     "react-dom": "^0.14.0",
     "babel": "^5.8.38",

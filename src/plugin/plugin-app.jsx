@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import ChartWithDetails from '../shared/components/chart-with-details';
 import Footer from '../shared/components/footer';
 import buildHierarchy from '../shared/buildHierarchy';
@@ -7,13 +7,14 @@ import {getAssetsData, getBundleDetails, ERROR_CHUNK_MODULES} from '../shared/ut
 
 export default React.createClass({
     propTypes: {
-        showFooter: React.PropTypes.boolean,
-        stats: React.PropTypes.object
+        showFooter: PropTypes.boolean,
+        stats: PropTypes.object
     },
 
     getInitialState() {
         return {
             assets: [],
+            labels: true,
             chartData: null,
             selectedAssetIndex: 0,
             showFooter: false
@@ -56,6 +57,12 @@ export default React.createClass({
         });
     },
 
+    onLabelsChange(ev) {
+        this.setState({
+            labels: ev.target.checked
+        });
+    },
+
     render() {
         let assetList;
         let bundleDetails = {};
@@ -69,12 +76,10 @@ export default React.createClass({
 
         if (this.state.assets.length > 1) {
             assetList = (
-                <div>
-                    <select onChange={this.onAssetChange} value={this.state.selectedAssetIndex}>
-                        <option value={0}>All Chunks</option>
-                        {this.state.assets.map((asset, i) => <option key={i} value={i + 1}>{asset.name}</option>)}
-                    </select>
-                </div>
+                <select onChange={this.onAssetChange} value={this.state.selectedAssetIndex}>
+                    <option value={0}>All Chunks</option>
+                    {this.state.assets.map((asset, i) => <option key={i} value={i + 1}>{asset.name}</option>)}
+                </select>
             );
         }
 
@@ -82,9 +87,17 @@ export default React.createClass({
             <div>
                 <h1>Webpack Visualizer</h1>
 
-                {assetList}
-
-                <ChartWithDetails chartData={this.state.chartData} bundleDetails={bundleDetails} />
+                <div>
+                    {assetList}
+                    <input type="checkbox" checked={this.state.labels}
+                        onChange={this.onLabelsChange} id="labels" />
+                    <label htmlFor="labels">Show labels</label>
+                </div>
+                <ChartWithDetails
+                    chartData={this.state.chartData}
+                    bundleDetails={bundleDetails}
+                    labels={this.state.labels}
+                />
 
                 {this.state.error && <div className="errorMessage">{this.state.error}</div>}
 

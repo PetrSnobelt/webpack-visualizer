@@ -58,6 +58,7 @@ export default class ChartWithDetails extends React.Component {
                     onHover={this.onChartHover}
                     onUnhover={this.onChartUnhover}
                     onRender={this.onChartRender}
+                    labels={this.props.labels}
                 />
                 <Breadcrumbs nodes={this.state.breadcrumbNodes} />
             </div>
@@ -68,5 +69,6 @@ export default class ChartWithDetails extends React.Component {
 ChartWithDetails.propTypes = {
     breadcrumbNodes: PropTypes.array,
     bundleDetails: PropTypes.object,
-    chartData: PropTypes.object
+    chartData: PropTypes.object,
+    labels: PropTypes.boolean
 };
